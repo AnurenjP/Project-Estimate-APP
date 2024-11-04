@@ -1,5 +1,111 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewBag.Title = "Sample Timeline";
 }
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Timeline</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .row {
+            background-color: white;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 5px; /* Reduced padding */
+        }
+
+            .row div {
+                padding: 2px; /* Reduced padding */
+                font-size: 0.9rem; /* Reduced font size */
+            }
+
+        .time-frame {
+            font-size: 0.8rem; /* Further reduced font size for time frames */
+        }
+
+        .gantt-chart {
+            margin-top: 30px;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="header">Sample Timeline Prepared</h2>
+        <div class="row">
+            <div class="col-md-2"><strong>Project Name</strong></div>
+            <div class="col-md-2"><strong>Owner</strong></div>
+            <div class="col-md-1"><strong>Analysis</strong></div>
+            <div class="col-md-1"><strong>Design</strong></div>
+            <div class="col-md-1"><strong>Dev Date</strong></div>
+            <div class="col-md-1"><strong>QA Date</strong></div>
+            <div class="col-md-1"><strong>Perf Testing</strong></div>
+            <div class="col-md-1"><strong>Prod Date</strong></div>
+            <div class="col-md-1"><strong>BC Date</strong></div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">Sample Project</div>
+            <div class="col-md-2">John</div>
+            <div class="col-md-1 time-frame">01/01/2023 - 01/15/2023</div>
+            <div class="col-md-1 time-frame">01/16/2023 - 01/31/2023</div>
+            <div class="col-md-1 time-frame">02/01/2023 - 02/15/2023</div>
+            <div class="col-md-1 time-frame">02/16/2023 - 02/28/2023</div>
+            <div class="col-md-1 time-frame">03/01/2023 - 03/15/2023</div>
+            <div class="col-md-1 time-frame">03/16/2023</div>
+            <div class="col-md-1 time-frame">03/17/2023</div>
+        </div>
+        <div class="gantt-chart">
+            <h3>Gantt Chart</h3>
+            <!-- Placeholder for Gantt chart -->
+            <div id="ganttChart" style="height: 400px;"></div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Add Gantt chart library script here -->
+    <script>
+        // Initialize the Gantt chart
+        gantt.init("ganttChart");
+
+        // Sample data for the Gantt chart
+        var tasks = {
+            data: [
+                { id: 1, text: "Project #1", start_date: "01-04-2023", duration: 18, progress: 0.4 },
+                { id: 2, text: "Task #1", start_date: "02-04-2023", duration: 8, progress: 0.6, parent: 1 },
+                { id: 3, text: "Task #2", start_date: "11-04-2023", duration: 8, progress: 0.6, parent: 1 }
+            ],
+            links: [
+                { id: 1, source: 1, target: 2, type: "1" },
+                { id: 2, source: 2, target: 3, type: "0" }
+            ]
+        };
+
+        gantt.parse(tasks);
+    </script>
+</body>
+</html>

@@ -13,7 +13,7 @@
         }
 
             .form-group label {
-                font-size: 18px;
+                font-size: 16px;
                 margin-right: 50px;
                 display: inline-block;
                 text-align: left;
@@ -92,6 +92,12 @@
             margin-bottom: 20px;
         }
 
+        .total-label {
+            font-style: italic;
+            font-size: 15px;
+            margin-left: auto;
+        }
+
         .continue-button {
             background-color: blue;
             color: white;
@@ -116,7 +122,7 @@
 
             <div class="section-title form-group col-8">
                 <label for="AnalysisandDesign">Analysis & Design</label>
-                <span id="AnalysisandDesign" style="font-weight: bold; font-size: 18px"></span>
+                <span id="AnalysisandDesign" class="total-label"></span>
 
             </div>
             <div class="inner-box">
@@ -137,7 +143,7 @@
 
             <div class="section-title form-group col-8">
                 <label for="Coding">Coding</label>
-                <span id="Coding" style="font-weight: bold; font-size: 18px"></span>
+                <span id="AnalysisandDesign" class="total-label"></span>
             </div>
             <div class="inner-box">
 
@@ -158,7 +164,7 @@
 
             <div class="section-title form-group col-8">
                 <label for="UnitTesting">Unit Testing</label>
-                <span id="UnitTesting" style="font-weight: bold; font-size: 18px"></span>
+                <span id="AnalysisandDesign" class="total-label"></span>
             </div>
             <div class="inner-box">
                 <div class="form-group col-9">
@@ -185,7 +191,7 @@
             </div>
             <div class="section-title form-group col-8">
                 <label for="QAandUATTesting">QA & UAT Testing</label>
-                <span id="QAandUATTesting" style="font-weight: bold; font-size: 18px"></span>
+                <span id="AnalysisandDesign" class="total-label"></span>
             </div>
             <div class="inner-box">
                 <div class="form-group col-9">
@@ -216,7 +222,7 @@
             </div>
             <div class="section-title form-group col-8">
                 <label for="ReleaseManagement">Release Management</label>
-                <span id="ReleaseManagement" style="font-weight: bold; font-size: 18px"></span>
+                <span id="AnalysisandDesign" class="total-label"></span>
             </div>
             <div class="inner-box">
                 <div class="form-group col-9">
@@ -234,7 +240,7 @@
             </div>
             <div class="section-title form-group col-8">
                 <label for="Support">Support</label>
-                <span id="Support" style="font-weight: bold; font-size: 18px"></span>
+                <span id="AnalysisandDesign" class="total-label"></span>
             </div>
             <div class="inner-box">
                 <div class="form-group col-9">
@@ -255,7 +261,7 @@
         <form id="SummaryContainer">
             <div class="section-title form-group col-8">
                 <label for="EstimationSummary">Estimation Summary</label>
-                <span id="EstimationSummary" style="font-weight: bold; font-size: 18px"></span>
+                <span id="AnalysisandDesign" class="total-label"></span>
             </div>
             <div class="inner-box">
 
@@ -289,12 +295,14 @@
                 <input type="number" id="Total" name="Total" readonly>
                 </div> *@
             </div>
-            <button type="button" class="continue-button" onclick="navigateTo()">Continue </button>
-           
-             
+            <button type="button" class="continue-button" onclick="navigateTo()">Continue</button>
+
         </form>
     </div>
     <script>
+        function navigateTo() {
+            window.location.href = '@Url.Action("Index2", "Home")';
+        }
         document.getElementById("SummaryButton").addEventListener("click", function () {
             var Summary = document.getElementById("SummaryContainer");
             if (Summary.style.display === "none" || Summary.style.display === "") {
@@ -408,11 +416,7 @@
 
 
         }
-      
-        function navigateTo() {
-            window.location.href = '@Url.Action("Index2", "Home")';
-        }
-    </script>
+
 
     </script>
 

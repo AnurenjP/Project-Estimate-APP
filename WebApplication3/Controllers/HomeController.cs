@@ -20,7 +20,13 @@ namespace ProjectEstimationApp.Controllers
         public ActionResult Index2()
         {
             return View();
+        } 
+        public ActionResult Index3()
+        {
+            return View();
         }
+       
+        
 
         public ActionResult Privacy()
         {

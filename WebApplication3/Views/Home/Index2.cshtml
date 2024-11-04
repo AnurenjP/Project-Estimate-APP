@@ -94,6 +94,10 @@
         }
     </style>
     <script>
+        function navigateTo() {
+            window.location.href = '@Url.Action("Index3", "Home")';
+        }
+
         function capitalizeFirstLetter(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
         }
@@ -211,7 +215,7 @@
             </div>
         </fieldset>
 
-        <button type="submit" class="continue-button">Submit</button>
+        <button type="button" class="continue-button" onclick="navigateTo()">Submit </button>
     </form>
 </body>
 
