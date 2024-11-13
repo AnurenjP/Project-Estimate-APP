@@ -53,22 +53,44 @@
             }
     </style>
     <script type="text/javascript">
-        function setDefaultHours(hours) {
-            document.getElementById('hours').value = hours;
-        }
-
-        function collectFormData() {
-            const projectType = document.querySelector('input[name="projectType"]:checked').value;
-            const complexity = document.querySelector('input[name="complexity"]:checked').value;
-            const hours = document.getElementById('hours').value;
-
-            console.log("Project Type:", projectType);
-            console.log("Complexity:", complexity);
-            console.log("Hours:", hours);
+        function calculateHours(projectType, complexity) {
+            const hoursMatrix = {
+                "Small": { "Low": 100, "Medium": 150, "High": 200 },
+                "Medium": { "Low": 300, "Medium": 400, "High": 500 },
+                "Large": { "Low": 600, "Medium": 700, "High": 800 }
+            };
+            return hoursMatrix[projectType][complexity];
         }
 
         function navigateTo() {
-            window.location.href = '@Url.Action("Index","Home")';
+            const projectType = document.querySelector('input[name="projectType"]:checked').value;
+            const complexity = document.querySelector('input[name="complexity"]:checked').value;
+            const hours = calculateHours(projectType, complexity);
+
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '@Url.Action("SubmitForm", "Home")';
+
+            const projectTypeInput = document.createElement('input');
+            projectTypeInput.type = 'hidden';
+            projectTypeInput.name = 'projectType';
+            projectTypeInput.value = projectType;
+            form.appendChild(projectTypeInput);
+
+            const complexityInput = document.createElement('input');
+            complexityInput.type = 'hidden';
+            complexityInput.name = 'complexity';
+            complexityInput.value = complexity;
+            form.appendChild(complexityInput);
+
+            const hoursInput = document.createElement('input');
+            hoursInput.type = 'hidden';
+            hoursInput.name = 'hours';
+            hoursInput.value = hours;
+            form.appendChild(hoursInput);
+
+            document.body.appendChild(form);
+            form.submit();
         }
     </script>
 </head>
@@ -80,22 +102,21 @@
         <fieldset>
             <legend>Select the Project Type</legend>
             <label>
-                <input type="radio" name="projectType" value="Small" onclick="setDefaultHours(100)" checked>
+                <input type="radio" name="projectType" value="Small" checked>
                 Small <span class="bracket-text">(Hours Range – 100 to 200)</span>
             </label>
             <br>
             <label>
-                <input type="radio" name="projectType" value="Medium" onclick="setDefaultHours(350)">
+                <input type="radio" name="projectType" value="Medium">
                 Medium <span class="bracket-text">(Hours Range – 200 to 500)</span>
             </label>
             <br>
             <label>
-                <input type="radio" name="projectType" value="Large" onclick="setDefaultHours(700)">
+                <input type="radio" name="projectType" value="Large">
                 Large <span class="bracket-text">(Hours Range – greater than 500)</span>
             </label>
             <br>
             <br>
-            
         </fieldset>
 
         <fieldset>

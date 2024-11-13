@@ -6,6 +6,17 @@ namespace ProjectEstimationApp.Controllers
 {
     public class HomeController : Controller
     {
+        [HttpPost]
+        public IActionResult SubmitForm(string projectType, string complexity, int hours)
+        {
+            // Store the form data in TempData to pass it to the next page
+            TempData["ProjectType"] = projectType;
+            TempData["Complexity"] = complexity;
+            TempData["Hours"] = hours;
+
+            // Redirect to the next page
+            return RedirectToAction("Index");
+        }
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
